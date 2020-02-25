@@ -14,7 +14,6 @@ export default class Register extends React.Component{
         }
     }
     changeHanlder = event =>{
-        console.log(event)
         this.setState({
             [event.target.id]: event.target.value
         })
@@ -32,6 +31,7 @@ export default class Register extends React.Component{
         fetch('https://reactcourseapi.herokuapp.com/user/register', config)
             .then(res => res.json())
             .then(data =>{
+                console.log('Succes!');
                 localStorage.setItem('token', data.token)
                 this.setState({...initState})   
             })
@@ -54,7 +54,7 @@ export default class Register extends React.Component{
                     <label >Password:
                         <input type='password' id='password' value={this.state.password} onChange={this.changeHanlder}/>
                     </label>
-                    <button type='submit'>Enviar!</button>
+                    <button type='submit' onClick={this.submitHandler}>Enviar!</button>
                     
                 </form>
             </>
